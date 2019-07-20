@@ -4,7 +4,7 @@
 APP=${1:-term}
 
 # Singularity image to use
-SIF=aip.sif
+SIF=aip-container_latest.sif
 
 # Setup defaults to use if .config/aip_container is not present
 BASE_PATH="/tmp"
