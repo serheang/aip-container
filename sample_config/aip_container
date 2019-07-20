@@ -1,0 +1,11 @@
+# This file should go in your $XDG_CONFIG_HOME/aip_container or ~/.config/aip_container
+
+# The existence of base path is checked before starting the container
+BASE_PATH="/tmp"
+
+# The host path is then created if it doesn't exist
+# (set BASE_PATH and HOST_PATH to be the same if you don't want any directories to be created)
+HOST_PATH="/tmp/$USER/aip"
+
+# This array of files is symlinked to the corresponding files in your $HOME
+SYMLINK=(".gitconfig" ".ssh")
