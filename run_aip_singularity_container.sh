@@ -51,7 +51,7 @@ then
 echo
 echo "You are using a container."
 echo "Your home is bound to $(tput bold)$HOST_PATH$(tput sgr0) on the host."
-if [[ $HOST_PATH == *"/tmp/"* ]]; then
+if [[ "$HOST_PATH" == *"/tmp/"* ]]; then
     echo "Ensure your changes are saved or committed before leaving."
 fi
 echo
