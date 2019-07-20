@@ -19,7 +19,17 @@ Configuration is stored in the file ~/.config/aip_container:
 
 # Usage
 
-Use run_aip_singularity_container.sh to start the container:
+If you are using a lab computer, the container should already be installed for you.
+
+To rebuild the container using your own computer:
+
+    sudo singularity build aip-container_latest.sif Singularity
+
+Or, you can pull the pre-built image from Singularity Hub to your own computer:
+
+    singularity pull shub://benatuts/aip-container
+
+Use run_aip_singularity_container.sh to manually start the container:
 
     run_aip_singularity_container.sh term      # Start a gnome-terminal
     run_aip_singularity_container.sh vscode    # Start visual studio code
