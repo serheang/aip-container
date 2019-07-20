@@ -7,12 +7,14 @@ from: ubuntu:latest
 
 %environment
     export PATH=/usr/local/bin:$PATH
+    export LANG=en_US.UTF-8
 
 %post
     apt update -y
 
     # Create a fairly sensible environment
-    DEBIAN_FRONTEND=noninteractive apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard iproute2 tzdata locales zip unzip
+    DEBIAN_FRONTEND=noninteractive apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard iproute2 tzdata zip unzip
+    DEBIAN_FRONTEND=noninteractive apt install -y language-pack-en locales
     locale-gen en_US.UTF-8
 
     # Run GUI apps in the container
@@ -38,10 +40,10 @@ from: ubuntu:latest
     apt clean
 
 %apprun term
-    gnome-terminal --wait
+    gnome-terminal --app-id aip.Terminal --wait
 
 %apprun fullterm
-    (/usr/lib/gnome-terminal/gnome-terminal-server &) && (sleep 0.4; gnome-terminal --wait)
+    (/usr/lib/gnome-terminal/gnome-terminal-server --app-id aip.Terminal &) && (sleep 0.4; gnome-terminal  --app-id aip.Terminal --wait)
 
 %apprun vscode
     code
