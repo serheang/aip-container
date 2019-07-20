@@ -7,9 +7,18 @@ APP=${1:-term}
 SIF=aip-container_latest.sif
 
 # Setup defaults to use if .config/aip_container is not present
-BASE_PATH="/tmp"
-HOST_PATH="/tmp/$USER/aip"
-SYMLINK=(".gitconfig")
+if [ -d "/images/tmp" ]
+then
+    # We're on a UTS computer, there is lots more storage in /images/tmp
+    BASE_PATH="/images/tmp"
+    HOST_PATH="/images/tmp/$USER/aip"
+    SYMLINK=(".gitconfig" ".ssh")
+else
+    # Default to using /tmp
+    BASE_PATH="/tmp"
+    HOST_PATH="/tmp/$USER/aip"
+    SYMLINK=(".gitconfig" ".ssh")
+fi
 
 # Read the config file in ~/.config/aip_container
 CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aip_container"
@@ -28,7 +37,7 @@ then
     # Create symlinks for important files
     for f in "${SYMLINK[@]}"
     do
-        if [ ! -e "$HOST_PATH/$f" ] && [ ! -L "$HOST_PATH/$f" ]
+        if [ -e "$HOME/$f" ] && [ ! -e "$HOST_PATH/$f" ] && [ ! -L "$HOST_PATH/$f" ]
         then
             ln -s "/host$HOME/$f" "$HOST_PATH/$f"
         fi
@@ -51,13 +60,13 @@ EOM
 
     fi
 
-    # Because we've bound a custom home, we need to handle .Xauthority
-    XAUTH="$SINGULARITYENV_HOST_PATH/.Xauthority"
-    touch "$XAUTH"
-    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge -
+    # This may be needed on some distributions
+    #XAUTH="$SINGULARITYENV_HOST_PATH/.Xauthority"
+    #touch "$XAUTH"
+    #xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge -
 
     # Launch the container
-    singularity run --app $APP -B /home:/host/home -B "$SINGULARITYENV_HOST_PATH":/home/$USER -B /run $SIF
+    singularity run --app $APP -B /home:/host/home --home "$SINGULARITYENV_HOST_PATH":/home/$USER -B /run --pwd /home/$USER $SIF
 else
     echo "BASE_PATH ($BASE_PATH) does not exist, will not create HOST_PATH."
     echo "Container start failed"
