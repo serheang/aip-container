@@ -66,7 +66,7 @@ EOM
     xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge -
 
     # Launch the container
-    singularity run --app $APP -B /home:/host/home --home "$SINGULARITYENV_HOST_PATH":/home/$USER -B /run --pwd /home/$USER $SIF
+    singularity run --app $APP -B $HOME/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 else
     echo "BASE_PATH ($BASE_PATH) does not exist, will not create HOST_PATH."
     echo "Container start failed"
