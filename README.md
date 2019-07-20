@@ -5,7 +5,9 @@ This is used for the subject Advanced Internet Programming (AIP) at UTS.
 
 # Configuration
 
-Configuration is stored in the file ~/.config/aip_container:
+Configuration is optional. If there is no configuration file, the default settings shown below will be used.
+
+You can override these defaults by creating a file named ~/.config/aip_container:
 
     # The existence of base path is checked before starting the container
     BASE_PATH="/tmp"
@@ -16,6 +18,8 @@ Configuration is stored in the file ~/.config/aip_container:
 
     # This array of files is symlinked to the corresponding files in your $HOME
     SYMLINK=(".gitconfig" ".ssh")
+
+Note that if the path /images/tmp exists and you have no configuration file, then /images/tmp will be used instead of /tmp. This is because on UTS lab computers, /images/tmp has greater capacity.
 
 # Usage
 
