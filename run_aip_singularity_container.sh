@@ -60,10 +60,10 @@ EOM
 
     fi
 
-    # This may be needed on some distributions
-    #XAUTH="$SINGULARITYENV_HOST_PATH/.Xauthority"
-    #touch "$XAUTH"
-    #xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge -
+    # This is needed for compatibility with some distributions, because we're remapping home
+    XAUTH="$SINGULARITYENV_HOST_PATH/.Xauthority"
+    touch "$XAUTH"
+    xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge -
 
     # Launch the container
     singularity run --app $APP -B /home:/host/home --home "$SINGULARITYENV_HOST_PATH":/home/$USER -B /run --pwd /home/$USER $SIF
