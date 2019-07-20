@@ -71,8 +71,9 @@ else
     echo "BASE_PATH ($BASE_PATH) does not exist, will not create HOST_PATH."
     echo "Container start failed"
     
-    # Show a GUI dialog
-    python2 -c "import Tkinter;r=Tkinter.Tk();r.withdraw();import sys;import tkMessageBox;tkMessageBox.showerror('Cannot start container', 'Container base path does not exist:\n' + sys.argv[1] + '\n\nPlease check any required disk drives (or USB memory sticks) are mounted.\n\nYour base path is configured in:\n' + sys.argv[2]);" "$BASE_PATH" "$CONFIG_FILE"
+    # Try to show a GUI dialog
+    (zenity --error --no-wrap --text="Container base path does not exist:\n$BASE_PATH\n\nPlease check any required disk drives (or USB memory sticks) are mounted.\n\nYour base path is configured in:\n$CONFIG_FILE" ||  \
+     python2 -c "import Tkinter;r=Tkinter.Tk();r.withdraw();import sys;import tkMessageBox;tkMessageBox.showerror('Cannot start container', 'Container base path does not exist:\n' + sys.argv[1] + '\n\nPlease check any required disk drives (or USB memory sticks) are mounted.\n\nYour base path is configured in:\n' + sys.argv[2]);" "$BASE_PATH" "$CONFIG_FILE")
     
     exit 1
 fi
