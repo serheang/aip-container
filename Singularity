@@ -37,7 +37,7 @@ NOTE:
     apt update -y
 
     # Create a fairly sensible environment
-    DEBIAN_FRONTEND=noninteractive apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard iproute2 tzdata zip unzip
+    DEBIAN_FRONTEND=noninteractive apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard tzdata zip unzip
     DEBIAN_FRONTEND=noninteractive apt install -y language-pack-en locales
     locale-gen en_US.UTF-8
 
