@@ -19,11 +19,11 @@ singularity pull shub://benatuts/aip-container
 
 How to use:
 # Start a gnome-terminal-server and gnome-terminal
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app fullterm -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app fullterm -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 # Start a gnome-terminal
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app term -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app term -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 # Start visual studio code
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app vscode -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app vscode -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 
 NOTE:
 1. $SINGULARITYENV_HOST_PATH is just a path where you want to be bind as $HOME in your container.
@@ -87,11 +87,11 @@ singularity pull shub://benatuts/aip-container
 
 How to use:
 # Start a gnome-terminal-server and gnome-terminal
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app fullterm -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app fullterm -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 # Start a gnome-terminal
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app term -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app term -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 # Start visual studio code
-    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app vscode -B $HOME:/host/home -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
+    SINGULARITYENV_HOST_PATH=/tmp/$USER; singularity run --app vscode -B $HOME:/host$HOME -H "$SINGULARITYENV_HOST_PATH":$HOME -B /run --pwd $HOME $SIF
 
 NOTE:
 1. $SINGULARITYENV_HOST_PATH is just a path where you want to be bind as $HOME in your container.
