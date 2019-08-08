@@ -35,15 +35,16 @@ NOTE:
     export LANG=en_US.UTF-8
 
 %post
+    export DEBIAN_FRONTEND=noninteractive
     apt update -y
 
     # Create a fairly sensible environment
-    DEBIAN_FRONTEND=noninteractive apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard tzdata zip unzip
-    DEBIAN_FRONTEND=noninteractive apt install -y language-pack-en locales
+    apt install -y gnupg2 dirmngr curl wget lsb-release vim nano net-tools ubuntu-standard tzdata zip unzip
+    apt install -y language-pack-en locales
     locale-gen en_US.UTF-8
 
     # Run GUI apps in the container
-    DEBIAN_FRONTEND=noninteractive apt install -y gnome-terminal gedit libcanberra-gtk-module libcanberra-gtk3-module libasound2 zenity
+    apt install -y gnome-terminal gedit libcanberra-gtk-module libcanberra-gtk3-module libasound2 zenity
 
     # Setup the NodeJS package database
     curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
@@ -55,11 +56,11 @@ NOTE:
 
     # Web development tools
     apt update -y
-    DEBIAN_FRONTEND=noninteractive apt install -y git nodejs mongodb-org sqlite3 apache2-utils
+    apt install -y git nodejs mongodb-org sqlite3 apache2-utils
 
     # Visual Studio Code
     curl -L https://go.microsoft.com/fwlink/?LinkID=760868 --out vscode.deb
-    DEBIAN_FRONTEND=noninteractive apt install -y ./vscode.deb
+    apt install -y ./vscode.deb
     rm vscode.deb
     
     apt clean
