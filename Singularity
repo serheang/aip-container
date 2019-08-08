@@ -3,6 +3,7 @@ from: ubuntu:latest
 
 %labels
     MAINTAINER benjamin.johnston
+    CO-AUTHOR Ser Heang TAN
     VERSION 2019.SPR.1
 
 %help
